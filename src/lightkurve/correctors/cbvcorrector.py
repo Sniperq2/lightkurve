@@ -3,7 +3,6 @@
 import logging
 import copy
 import requests
-import urllib.request
 import glob
 import os
 import warnings
@@ -1939,7 +1938,7 @@ def load_tess_cbvs(cbv_dir=None,sector=None, camera=None,
 
             # Read in the relevant curl script file and find the line for the CBV
             # data we are looking for
-            data = urllib.request.urlopen(curlUrl)
+            data = requests.get(curlUrl).text
             for line in data:
                 strLine = str(line)
                 if SearchString in strLine:
