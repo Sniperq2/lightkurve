@@ -1923,7 +1923,7 @@ def load_tess_cbvs(cbv_dir=None,sector=None, camera=None,
                 if SearchString in strLine:
                     fname = strLine
                     break
-            if (fname is None):
+            else:  # if not break
                 raise Exception('CBV FITS file not found')
 
             # Extract url from strLine
@@ -1940,13 +1940,11 @@ def load_tess_cbvs(cbv_dir=None,sector=None, camera=None,
             # Read in the relevant curl script file and find the line for the CBV
             # data we are looking for
             data = urllib.request.urlopen(curlUrl)
-            foundIndex = None
             for line in data:
                 strLine = str(line)
                 if SearchString in strLine:
-                    foundIndex = strLine.index(SearchString)
                     break
-            if (foundIndex is None):
+            else:  # if not break
                 raise Exception('CBV FITS file not found')
 
             # Extract url from strLine
